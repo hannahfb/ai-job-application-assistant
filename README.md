@@ -10,9 +10,9 @@ Claude to suggest and generate tailored edits.
 3. Scores each CV against the job description by keyword overlap and ranks them
 4. Sends the best-matching CV to Claude for suggested edits
 5. Lets you approve the suggestions, or describe feedback to revise them (loops until approved)
-6. On approval, asks whether to generate the updated CV and what role it's for
-7. Generates the updated CV via Claude and saves it to
-   `data/generated_cvs/<cv_name>_<role_name>.tex`
+6. On approval, generates the updated CV and shows a preview
+7. Asks whether to save it — if so, prompts for a role name and saves
+   to `data/generated_cvs/<cv_name>_<role_name>.tex`
 
 ## Project structure
 
