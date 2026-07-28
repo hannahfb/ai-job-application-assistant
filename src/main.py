@@ -1,6 +1,7 @@
 from cv_loader import load_cvs
 from job_input import get_job_description
 from cv_matcher import score_cv
+from ai_client import ask_ai
 
 def main():
     cvs = load_cvs()
@@ -37,6 +38,18 @@ def main():
         print(
             f"{result['name']}: {result['score']} matches"
         )
+
+    prompt = f"""
+    Analyse this job description and recommend CV improvements.
+
+    Job description:
+    {job_description}
+    """
+
+    response = ask_ai(prompt)
+
+    print("\nAI Recommendation:")
+    print(response)
 
 if __name__ =="__main__":
     main()
