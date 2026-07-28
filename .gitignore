@@ -147,6 +147,9 @@ activemq-data/
 # SageMath parsed files
 *.sage.py
 
+# Personal CV data
+data/
+
 # Environments
 .env
 .envrc
