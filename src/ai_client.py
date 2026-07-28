@@ -1,14 +1,29 @@
+import os
+from dotenv import load_dotenv
+from anthropic import Anthropic
+
+load_dotenv()
+
+client = Anthropic(
+    api_key=os.getenv("ANTHROPIC_API_KEY")
+)
+
+
 def ask_ai(prompt):
-    """
-    Temporary mock Ai response.
-    This will later be replaced with a real API call.
-    """
+    response = client.messages.create(
+        model="claude-sonnet-5",
+        max_tokens=1000,
+        thinking={
+            "type": "disabled"
+        },
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    )
 
-    return f"""
-    Mock AI response:
-
-    I received this prompt:
-    {prompt}
-
-    In the real version, Claude would generate a tailored response here.
-    """
+    for block in response.content:
+        if block.type == "text":
+            return block.text
