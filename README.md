@@ -12,7 +12,7 @@ Claude to suggest and generate tailored edits.
 5. Lets you approve the suggestions, or describe feedback to revise them (loops until approved)
 6. On approval, generates the updated CV and shows a preview
 7. Asks whether to save it — if so, prompts for a role name and saves
-   to `data/generated_cvs/<cv_name>_<role_name>.tex`
+   to `data/generated_cvs/<user_name>_<role_name>.tex`
 
 ## Project structure
 
@@ -44,10 +44,12 @@ data/
    ```
    pip install -r requirements.txt
    ```
-3. Copy `.env.example` to `.env` and add your Anthropic API key:
+3. Copy `.env.example` to `.env` and add your Anthropic API key and name:
    ```
    ANTHROPIC_API_KEY=your-key-here
+   USER_NAME=Your Name
    ```
+   `USER_NAME` is used to name generated CV files (e.g. `your_name_role.tex`).
 4. Create a `data/cvs/` folder and add your CV(s) as `.tex` files to it
    (this folder is gitignored and won't exist on a fresh clone):
    ```

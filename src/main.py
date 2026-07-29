@@ -1,3 +1,4 @@
+import os
 from cv_loader import load_cvs
 from job_input import get_job_description
 from cv_matcher import score_cv
@@ -103,10 +104,17 @@ def main():
         role_name = input("\nEnter a role name for this CV: ").strip()
         safe_role_name = role_name.lower().replace(" ", "_")
 
+        raw_user_name = os.getenv("USER_NAME")
+        if not raw_user_name:
+            print("\nWarning: USER_NAME not set in .env — using 'cv' as a placeholder in the filename.")
+            raw_user_name = "cv"
+
+        user_name = raw_user_name.lower().replace(" ", "_")
+
         output_dir = Path("data/generated_cvs")
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        output_path = output_dir / f"{best_cv['name']}_{safe_role_name}.tex"
+        output_path = output_dir / f"{user_name}_{safe_role_name}.tex"
         output_path.write_text(updated_cv, encoding="utf-8")
 
         print(f"\nUpdated CV saved to {output_path}")
